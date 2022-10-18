@@ -1,0 +1,303 @@
+:root {
+  --ff-titles: 'Staatliches', cursive;
+  --ff-texts: 'Palanquin', sans-serif;
+  --ff-header-p: 'Roboto', sans-serif;
+  --ff-footer: 'Open Sans', sans-serif;
+  
+  font-size: 62.5%;
+  --fs-main: 2rem;
+  --fs-header-title: 4rem;
+  --fs-footer: 1.4rem;
+  --fs-header-p: 2.4rem;
+  --fs-header-secondary: 4.8rem;
+
+  --bg-primary: hsl(233, 100%, 97%);
+  --bg-secundary: hsl(218, 17%, 62%);
+  --bg-secundary-dark: hsl(275, 18%, 79%);
+  --bg-secundary-light: hsl(312, 91%, 96%);
+
+  --fc-primary: hsl(0, 0%, 100%);
+  --fc-secundary: hsl(232, 17%, 35%);
+  --fc-secundary-dark: hsl(274, 84%, 12%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+}
+
+.page {
+  display: grid;
+  margin: 0 auto;
+}
+
+header {
+  background-color: var(--bg-secundary);
+  text-align: center;
+  padding: 3.2rem 0 2.9rem;
+}
+
+header img {
+  margin-bottom: 3.2rem;
+}
+
+header h1 {
+  text-transform: uppercase;
+  font-family: var(--ff-titles);
+  font-size: var(--fs-header-title);
+  color: var(--fc-primary);
+  background-color: var(--bg-secundary-dark);
+  font-weight: 400;
+  font-size: var(--fs-header-title);
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+header p {
+  display: none;
+
+  font-family: var(--ff-header-p);
+  font-size: var(--fs-header-p);
+  color: var(--fc-primary);
+  line-height: 2rem;
+
+  margin: 3.2rem 5rem 0;
+}
+
+main {
+  display: grid;
+  padding: 1.4rem 3.2rem 6rem;
+  text-align: center;
+  max-width: clamp(33rem, 30rem + 60vw, 117rem);
+}
+
+main p {
+  font-family: var(--ff-texts);
+  font-size: var(--fs-main);
+  color: var(--fc-secundary-dark);
+  line-height: 1.5rem;
+  font-weight: 400;
+
+  margin-bottom: 6.3rem;
+}
+
+.card {
+  display: flex;
+  position: relative;
+  font-family: var(--ff-titles);
+}
+
+.card + .card {
+  margin-top: 3.2rem;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+
+  object-fit: cover;
+  border-radius: 20px;
+  
+  transition: all 400ms;
+  animation: fromBottom 700ms;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  opacity: 0.7;
+}
+
+.card h2 {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+
+  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+
+  font-size: var(--fs-main);
+  font-weight: 400;
+  color: var(--fc-secundary);
+  
+  background: var(--bg-secundary-light);
+  border-radius: 2rem;
+  padding: 0 2.4rem;
+
+  animation: fromTop 700ms 350ms backwards;
+}
+
+.repeated {
+  display: none;
+}
+
+footer p {
+  display: none;
+
+  font-family: var(--ff-footer);
+  font-size: var(--fs-footer);
+  color: var(--fc-secundary);
+  line-height: 2.8rem;
+
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--fc-secundary);
+  font-weight: bold;
+}
+
+footer a:hover,
+footer a:focus {
+  text-decoration: underline;
+  color: blueviolet;
+}
+
+/* animações */
+@keyframes fromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fromBottom{
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* media queries */
+
+@media (min-width:800px) {
+  .page {
+    display: grid;
+    grid-template-areas: 
+    "header main"
+    "header footer";
+
+    max-width: 100%;
+    height: 100vh;
+  }
+
+  main p,
+  .card h2 {
+    display: none;
+  }
+
+  header p {
+    display: flex;
+    font-size: var(--fs-main);
+  }
+
+  header {
+    grid-area: header;
+    max-width: 30rem;
+
+    padding-bottom: 0;
+  }
+
+  main {
+    grid-area: main;
+    grid-template-areas: 
+    "A B"
+    "C B"
+    "C D";
+
+    padding: 3.2rem;
+    gap: 3.2rem;
+  }
+
+  main .palette {
+    grid-area: A;
+  }
+
+  main .shake {
+    grid-area: B;
+  }
+
+  main .popsicle {
+    grid-area: C;
+  }
+
+  main .ice-cream {
+    grid-area: D;
+  }
+
+  .card + .card {
+    margin-top: 0;
+  }
+
+  footer p {
+    display: block;
+    grid-area: footer;
+  }
+}
+
+@media (min-width:1200px) {
+
+  header {
+    max-width: 37.7rem;
+  }
+  
+  header h1 {
+    font-size: var(--fs-header-secondary);
+  }
+
+  header p {
+    font-size: var(--fs-header-p);
+  }
+
+  .repeated {
+    display: flex;
+  }
+
+  main {
+    grid-template-areas: 
+    "A B C"
+    "D B E"
+    "D F E";
+
+    padding: 6rem 8rem 5rem 8rem;
+  }
+
+  main .palette {
+    grid-area: A;
+  }
+
+  main .shake {
+    grid-area: B;
+  }
+
+  main .A {
+    grid-area: C;
+  }
+
+  main .popsicle {
+    grid-area: D;
+  }
+
+  main .ice-cream {
+    grid-area: F;
+  }
+
+  main .B {
+    grid-area: E;
+  }
+}
